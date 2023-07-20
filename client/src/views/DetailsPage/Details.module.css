@@ -1,0 +1,79 @@
+/* Details.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-image: url('../../images/Arboles-minimalismo-1366x768-resolucion-hd-fondo-de-pantalla-4k.png');
+  }
+
+.semiContainer {
+  display: flex;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: rgb(231, 217, 217, 0.8);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 3);
+  max-width: 600px;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+}
+  
+  img {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .activity {
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .activity strong {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .activity br {
+    display: none; /* Para ocultar los saltos de línea en el contenido */
+  }
+  
+  li.NoActivities {
+    color: #777;
+    font-style: italic;
+    margin-top: 15px;
+  }
+  
+  /* Estilos para cuando no hay imagen */
+  .container.NoImage {
+    justify-content: center;
+  }
+  
+  .container.NoImage img {
+    display: none;
+  }
+  
+  .container.NoImage h1 {
+    margin-top: 20px;
+  }
+  

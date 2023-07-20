@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    align-items: center;
+    font-family: "Consolas";
+    background-color: rgb(0, 0, 0, 0.7);
+    padding: 10px;
+    height: 30px;
+  }
+  
+  /* Adjusted styles for the "Home" button */
+  .container > a:first-child {
+    margin-right: auto; /* Pushes the "Home" button to the beginning */
+  }
+  
+  /* Adjusted styles for the search input and "Submit" button */
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Pushes the search input to the left */
+  }
+  
+  .search-container input {
+    margin-right: 5px; /* Adds spacing between the search input and "Submit" button */
+  }
+  
+  /* Adjusted styles for the "Create Activity" button */
+  .container > a:last-child {
+    margin-left: auto; /* Pushes the "Create Activity" button to the end */
+  }

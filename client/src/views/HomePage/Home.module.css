@@ -1,0 +1,46 @@
+.containerMax {
+    display: flex;
+    flex-direction: row;
+    font-family: "Consolas";
+    color: white;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    flex-wrap: wrap;
+    background-image: url('../../images/Arboles-minimalismo-1366x768-resolucion-hd-fondo-de-pantalla-4k.png');
+}
+
+.cardsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    height:515px;
+    width:1070px;
+    background-color: rgba(0, 0, 0, 0.253);
+}
+
+
+.filtersContainer{
+    margin-top: 0;
+    position: relative; /* Agregar posición relativa */
+    padding-top: -150px; /* Desplazar hacia arriba en 150px */
+    color: black;
+    width: 200px;
+    background-color: rgba(240, 248, 255, 0.5);
+    height: 575px;
+    /* Nuevas modificaciones para centrar el contenido */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginado{
+    color: black;
+    margin-top: 10px;
+    margin-left: 220px;
+}
+

@@ -1,0 +1,56 @@
+
+
+.landingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../../../images/world\ and\ maps\ 1\ \(1\).png');
+  background-size: cover;
+}
+
+/* Estilos para el contenedor interno */
+.contenedor {
+  padding: 40px;
+  border-radius: 20px;
+  background-color: rgb(231, 217, 217, 0.8);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 3);
+  max-width: 600px;
+  width: 90%;
+}
+
+/* Estilos para el mensaje de bienvenida */
+.contenedor h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la descripción */
+.contenedor p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Estilos para el botón */
+.contenedor button {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  width: 200px;
+}
+
+.contenedor button:hover {
+  background-color: #0056b3;
+}
+
