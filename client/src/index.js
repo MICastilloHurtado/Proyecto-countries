@@ -6,6 +6,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { Provider } from 'react-redux'
+import axios from 'axios'
+
+// axios.defaults.baseURL = "http://localhost:3001"  
+axios.defaults.baseURL = "https://country-back-bode.onrender.com"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

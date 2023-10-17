@@ -1,10 +1,11 @@
-import { GET_ACTIVITIES, DELETE_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_DETAIL, CREATE_ACTIVITY,SEARCH_COUNTRY, ORDER_BY_NAME, FILTER_COUNTRY } from "./actionsType";
+import { GET_ACTIVITIES, DELETE_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_DETAIL, CREATE_ACTIVITY,SEARCH_COUNTRY, ORDER_BY_NAME, FILTER_COUNTRY, PAGINATE } from "./actionsType";
 
 const initialState = {
     countries : [],
     allCountries : [],
     countryDetails : {},
-    activities : []
+    activities : [],
+    page:1
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -61,6 +62,11 @@ const reducer = (state = initialState, {type, payload}) => {
             if(payload === "ascPopulation")  return {...state,countries: allCountriesCopy.sort((a, b) => parseInt(a.population, 10) - parseInt(b.population, 10))}
             if(payload === "descPopulation")  return {...state,countries: allCountriesCopy.sort((a, b) => parseInt(b.population, 10) - parseInt(a.population, 10))}
             break;
+
+        case PAGINATE:
+            return{...state,
+                page:payload}
+
 
         default:
             return{...state}

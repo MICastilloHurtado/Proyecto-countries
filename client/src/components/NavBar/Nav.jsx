@@ -3,9 +3,17 @@ import style from './Nav.module.css'
 import { useState } from 'react'
 import { searchCountry } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
+import { paginate } from '../../redux/actions'
+import {FaSearch} from "react-icons/fa"
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+
+
 
 const Nav = () => {
 
+    const navigate = useNavigate()
+    const location = useLocation()
     const dispatch = useDispatch()
 
     const [name, setName] = useState('')
@@ -14,21 +22,35 @@ const Nav = () => {
         setName(event.target.value)
     }
 
+    
     const handleSubmit = (event) => {
-        dispatch(searchCountry(name))
-        event.preventDefault()
-        setName('')
+        if(location.pathname !== '/home'){
+            navigate('/home')
+            event.preventDefault();
+            dispatch(searchCountry(name));
+            dispatch(paginate(1));
+            setName(''); 
+        } else{
+            event.preventDefault();
+            dispatch(searchCountry(name));
+            dispatch(paginate(1));
+            setName(''); 
+        }
     }
+    
+
 
     return (
         <div className={style.container}>
             <Link to='/home'>
-                <button>HOME</button>
+                <button className={style.button}>HOME</button>
             </Link>
+            <div className={style.containerSearch} >
             <input className={style.search} type='search' value={name} onChange={handleChange} placeholder='Search country'/>
-            <button className={style.submit} type='submit' disabled={name===""} onClick={handleSubmit} >Submit</button>
+            <button className={style.submit} disabled={name===""} onClick={handleSubmit} ><FaSearch className="fa fa-search"></FaSearch></button>
+            </div>
             <Link to='/form'>
-                <button>CREATE ACTIVITY / DELETE ACTIVITY</button>
+                <button className={style.button}>CREATE ACTIVITY / DELETE ACTIVITY</button>
             </Link>
         </div>
     )

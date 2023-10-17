@@ -1,7 +1,6 @@
-import { GET_ACTIVITIES, DELETE_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_DETAIL, CREATE_ACTIVITY,SEARCH_COUNTRY,FILTER_COUNTRY, ORDER_BY_NAME,} from "./actionsType";
+import { GET_ACTIVITIES, DELETE_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_DETAIL, CREATE_ACTIVITY,SEARCH_COUNTRY,FILTER_COUNTRY, ORDER_BY_NAME, PAGINATE} from "./actionsType";
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001';
 
 export const getCountries = () => {
     return async (dispatch) => {
@@ -66,5 +65,16 @@ export const orderByName = (payload) => {
     return{
         type:ORDER_BY_NAME,
         payload
+    }
+}
+
+//-----------------------------PAGINADO-----------------------------------------------------
+
+export const paginate = (numero) => {
+    return(dispatch) => {
+        dispatch({
+            type : PAGINATE,
+            payload:numero
+        })
     }
 }

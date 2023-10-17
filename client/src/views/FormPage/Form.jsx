@@ -42,16 +42,26 @@ const Form = () => {
         }))
     }
     //se ejecuta cuando se produce un cambio en el input o select, indica que se guarde dentro del estado input, en la propiedad con el mismo nombre que tiene event.target.name ( por ej: 'name'), el valor proporcionado en el input o select y llama a la función setErrors para realizar validaciones en el nuevo estado input.
+    
+    // Para evitar que se repitan los paises ya seleccionados
+    const [handleSelectCountry, setHandleSelectCountry] = useState([]);
 
     const handleSelectCountries = (event) => {
-        setInput({
-            ...input,
-            countryId: [...input.countryId, event.target.value]
-        })
-        setErrors(validation({
-            ...input,
-            countryId: [...input.countryId, event.target.value]
-        }))
+
+        const containCountries = event.target.value
+
+        if(!handleSelectCountry.includes(containCountries)){
+            setInput({
+                ...input,
+                countryId: [...input.countryId, event.target.value]
+            })
+            setErrors(validation({
+                ...input,
+                countryId: [...input.countryId, event.target.value]
+            }))
+
+            setHandleSelectCountry([...handleSelectCountry, containCountries])
+        }
     }
     //se ejecuta cuando se selecciona el pais o los paises donde se realiza la nueva actividad. Concatena el valor proporcionado en el select con los valores previos en la propiedad countryId, llama a la función setErrors para realizar validaciones en el nuevo estado input. 
 
@@ -87,14 +97,11 @@ const Form = () => {
     //se ejecuta cuando se selecciona una actividad para eliminar en el campo de selección correspondiente.
     
     const handleSubmitDelete = (event) => {
-        event.preventDefault(); 
-        if(del.length <= 0)alert('You must select an activity to delete')
-        else{
+        event.preventDefault()
             dispatch(deleteActivities(del))
             alert('Activity deleted!')
             setDel('');
-            reload();
-        }
+            reload();        
     }
 
     //----------------------------useEffect---------------------------------------------------------------
@@ -105,10 +112,6 @@ const Form = () => {
 
     useEffect(() => {
         dispatch(getActivities())
-    }, [dispatch])
-
-    useEffect(() =>{
-        dispatch(deleteActivities())
     }, [dispatch])
 
 
@@ -131,9 +134,9 @@ const Form = () => {
                         </div>
 
                         <div className={style.formField}>
-                                <label className={style.label}>Difficulty: </label>
-                                <select className={style.formInput} onChange={handleChange} name='difficulty'>
-                                    <option value="" disabled selected>Select</option>
+                                <label className={style.label} >Difficulty: </label>
+                                <select className={style.formInput} onChange={handleChange} name='difficulty' value={input.difficulty} >
+                                    <option value="" disabled >Select</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -148,8 +151,8 @@ const Form = () => {
                         <div className={style.formField}>
                             
                                 <label className={style.label}>Duration: </label>
-                                <select className={style.formInput} onChange={handleChange} name='duration'>
-                                    <option value="" disabled selected>Select</option>
+                                <select className={style.formInput} onChange={handleChange} name='duration' value={input.duration}  >
+                                    <option value="" disabled >Select</option>
                                     <option value="1">1 hs</option>
                                     <option value="2">2 hs</option>
                                     <option value="3">3 hs</option>
@@ -183,8 +186,8 @@ const Form = () => {
                         <div className={style.formField}>
                             
                                 <label className={style.label}>Season: </label>
-                                <select className={style.formInput} onChange={handleChange} name='season'>
-                                    <option value="" disabled selected>Select</option>
+                                <select className={style.formInput} onChange={handleChange} name='season' value={input.season}  >
+                                    <option value="" disabled >Select</option>
                                     <option key="Summer" value="Summer">Summer</option>
                                     <option key="Autumn" value="Autumn">Autumn</option>
                                     <option key="Winter" value="Winter">Winter</option>
@@ -198,8 +201,8 @@ const Form = () => {
                         <div className={style.formField}>
                             
                                 <label className={style.label}>Country: </label>
-                                <select className={style.formInput} onChange={handleSelectCountries}>
-                                    <option value="" disabled selected>Select country</option>  
+                                <select className={style.formInput} onChange={handleSelectCountries}  >
+                                        <option value="" >Select country</option> 
                                     {/* Esta opción deshabilitada y seleccionada por defecto sirve como un texto de instrucción para que el usuario seleccione al menos un país. No se puede seleccionar y no tiene ningún valor asociado. */}
                                     {countriesOrden.map((country) => (
                                         <option key={country.id} value={country.id}>{country.name}</option>
@@ -233,11 +236,11 @@ const Form = () => {
 
             <div className={style.deleteActivity}>
             <h1 className={style.title}>Delete Activity</h1>
-            <form onSubmit={(event) => handleSubmitDelete(event)}>
+            <form >
             <div className={style.formField}>
                             <div>
-                                <select className={style.formInputdel} onChange={handleSelectDelete}>
-                                    <option value="" disabled selected>Activity</option>
+                                <select className={style.formInputdel} onChange={handleSelectDelete}  >
+                                    <option value="" >Activity</option>
                                     {activitiesOrden && activitiesOrden.map((activity) => {
                                         return (
                                             <option key={activity.id} value={activity.name}>{activity.name}</option>
@@ -250,7 +253,7 @@ const Form = () => {
                          <p className={style.elegidos} >Activity to delete: {del}</p>
 
                     <div>
-                        <button className={style.reload} type="submit" disabled={del===''}>Delete</button>
+                        <button className={style.reload} type="submit" disabled={del===''} onClick={handleSubmitDelete}>Delete</button>
                     </div>
 
                     
